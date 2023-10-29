@@ -4,13 +4,11 @@ KAFKA_LOG_DIR=/var/lib/kafka/log \
 JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 
 ARG KAFKA_DIST=kafka_2.13-3.6.0
-ARG KAFKA_URL=https://downloads.apache.org/kafka/3.6.0/$KAFKA_DIST.tgz
-
 
 RUN set -x \
     && apt-get update \
     && apt-get install -y wget \
-	&& wget -q "$KAFKA_URL" \
+	&& wget -q "https://downloads.apache.org/kafka/3.6.0/$KAFKA_DIST.tgz" \
     && export GNUPGHOME="$(mktemp -d)" \
     && tar -xzf "$KAFKA_DIST.tgz" -C /opt \
     && rm -r "$GNUPGHOME" "$KAFKA_DIST.tgz" \
