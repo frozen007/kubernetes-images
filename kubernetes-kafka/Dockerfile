@@ -28,13 +28,10 @@ RUN set -x \
     && wget -q "https://downloads.apache.org/kafka/3.6.0/$KAFKA_DIST.tgz"
 
 RUN set -x \
-    && export GNUPGHOME="$(mktemp -d)"
-
-RUN set -x \
     && tar -xzf "$KAFKA_DIST.tgz" -C /opt
 
 RUN set -x \
-    && rm -r "$GNUPGHOME" "$KAFKA_DIST.tgz"
+    && rm -rf "$KAFKA_DIST.tgz"
 
 RUN set -x \
     && ln -s /opt/$KAFKA_DIST /opt/kafka
