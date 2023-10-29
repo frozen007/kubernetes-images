@@ -1,52 +1,37 @@
 FROM openjdk:8u102-jre
 ENV KAFKA_USER=kafka \
-KAFKA_LOG_DIR=/var/lib/kafka/log \
-JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+KAFKA_LOG_DIR=/var/lib/kafka/log
 
 ARG KAFKA_DIST=kafka_2.13-3.6.0
 
-#RUN set -x \
-#    && apt-get update \
-#    && apt-get install -y wget \
-#	&& wget -q "https://downloads.apache.org/kafka/3.6.0/$KAFKA_DIST.tgz" \
-#    && export GNUPGHOME="$(mktemp -d)" \
-#    && tar -xzf "$KAFKA_DIST.tgz" -C /opt \
-#    && rm -r "$GNUPGHOME" "$KAFKA_DIST.tgz" \
-#    && ln -s /opt/$KAFKA_DIST /opt/kafka \
-#    && rm -rf /opt/kafka/LICENSE \
-#    /opt/kafka/NOTICE \
-#    /opt/kafka/site-docs \
-#    /opt/kafka/licenses \
-#	&& apt-get autoremove -y wget \
-#	&& rm -rf /var/lib/apt/lists/*
-
-#RUN set -x \
-#    && apt-get update \
-#    && apt-get install -y wget
-
 RUN set -x \
-    && wget -q "https://downloads.apache.org/kafka/3.6.0/$KAFKA_DIST.tgz"
-
-RUN set -x \
-    && tar -xzf "$KAFKA_DIST.tgz" -C /opt
-
-RUN set -x \
-    && rm -rf "$KAFKA_DIST.tgz"
-
-RUN set -x \
-    && ln -s /opt/$KAFKA_DIST /opt/kafka
-
-RUN set -x \
+	&& wget -q "https://downloads.apache.org/kafka/3.6.0/$KAFKA_DIST.tgz" \
+    && tar -xzf "$KAFKA_DIST.tgz" -C /opt \
+    && rm -rf "$KAFKA_DIST.tgz" \
+    && ln -s /opt/$KAFKA_DIST /opt/kafka \
     && rm -rf /opt/kafka/LICENSE \
     /opt/kafka/NOTICE \
     /opt/kafka/site-docs \
     /opt/kafka/licenses
 
-#RUN set -x \
-#    && apt-get autoremove -y wget
 
 #RUN set -x \
-#    && rm -rf /var/lib/apt/lists/*
+#    && wget -q "https://downloads.apache.org/kafka/3.6.0/$KAFKA_DIST.tgz"
+#
+#RUN set -x \
+#    && tar -xzf "$KAFKA_DIST.tgz" -C /opt
+#
+#RUN set -x \
+#    && rm -rf "$KAFKA_DIST.tgz"
+#
+#RUN set -x \
+#    && ln -s /opt/$KAFKA_DIST /opt/kafka
+#
+#RUN set -x \
+#    && rm -rf /opt/kafka/LICENSE \
+#    /opt/kafka/NOTICE \
+#    /opt/kafka/site-docs \
+#    /opt/kafka/licenses
 
 
 #Copy configuration generator script to bin
