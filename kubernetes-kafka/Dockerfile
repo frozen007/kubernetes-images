@@ -6,7 +6,7 @@ ARG KAFKA_DIST=kafka_2.13-3.6.0
 
 RUN set -x \
     && apt-get update \
-    && apt-get install -y openjdk-8-jre-headless wget \
+    && apt-get install -y openjdk-11-jre-headless wget \
 	&& wget -q "https://downloads.apache.org/kafka/3.6.0/$KAFKA_DIST.tgz" \
     && tar -xzf "$KAFKA_DIST.tgz" -C /opt \
     && rm -rf "$KAFKA_DIST.tgz" \
