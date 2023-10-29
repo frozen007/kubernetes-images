@@ -1,4 +1,4 @@
-FROM ubuntu:16.04 
+FROM openjdk:8u102-jre
 ENV KAFKA_USER=kafka \
 KAFKA_LOG_DIR=/var/lib/kafka/log \
 JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
@@ -9,7 +9,7 @@ ARG KAFKA_URL=https://downloads.apache.org/kafka/3.6.0/$KAFKA_DIST.tgz
 
 RUN set -x \
     && apt-get update \
-    && apt-get install -y openjdk-8-jre-headless wget netcat-openbsd \
+    && apt-get install -y wget\
 	&& wget -q "$KAFKA_URL" \
     && export GNUPGHOME="$(mktemp -d)" \
     && tar -xzf "$KAFKA_DIST.tgz" -C /opt \
