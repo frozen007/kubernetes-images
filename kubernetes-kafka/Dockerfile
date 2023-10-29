@@ -1,10 +1,12 @@
-FROM openjdk:8u102-jre
+FROM debian:11.8-slim
 ENV KAFKA_USER=kafka \
 KAFKA_LOG_DIR=/var/lib/kafka/log
 
 ARG KAFKA_DIST=kafka_2.13-3.6.0
 
 RUN set -x \
+    && apt-get update \
+    && apt-get install -y openjdk-8-jre-headless wget \
 	&& wget -q "https://downloads.apache.org/kafka/3.6.0/$KAFKA_DIST.tgz" \
     && tar -xzf "$KAFKA_DIST.tgz" -C /opt \
     && rm -rf "$KAFKA_DIST.tgz" \
@@ -12,26 +14,9 @@ RUN set -x \
     && rm -rf /opt/kafka/LICENSE \
     /opt/kafka/NOTICE \
     /opt/kafka/site-docs \
-    /opt/kafka/licenses
-
-
-#RUN set -x \
-#    && wget -q "https://downloads.apache.org/kafka/3.6.0/$KAFKA_DIST.tgz"
-#
-#RUN set -x \
-#    && tar -xzf "$KAFKA_DIST.tgz" -C /opt
-#
-#RUN set -x \
-#    && rm -rf "$KAFKA_DIST.tgz"
-#
-#RUN set -x \
-#    && ln -s /opt/$KAFKA_DIST /opt/kafka
-#
-#RUN set -x \
-#    && rm -rf /opt/kafka/LICENSE \
-#    /opt/kafka/NOTICE \
-#    /opt/kafka/site-docs \
-#    /opt/kafka/licenses
+    /opt/kafka/licenses \
+    && apt-get autoremove -y wget \
+    && rm -rf /var/lib/apt/lists/*
 
 
 #Copy configuration generator script to bin
