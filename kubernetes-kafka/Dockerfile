@@ -20,9 +20,9 @@ ARG KAFKA_DIST=kafka_2.13-3.6.0
 #	&& apt-get autoremove -y wget \
 #	&& rm -rf /var/lib/apt/lists/*
 
-RUN set -x \
-    && apt-get update \
-    && apt-get install -y wget
+#RUN set -x \
+#    && apt-get update \
+#    && apt-get install -y wget
 
 RUN set -x \
     && wget -q "https://downloads.apache.org/kafka/3.6.0/$KAFKA_DIST.tgz"
@@ -45,11 +45,11 @@ RUN set -x \
     /opt/kafka/site-docs \
     /opt/kafka/licenses
 
-RUN set -x \
-    && apt-get autoremove -y wget
+#RUN set -x \
+#    && apt-get autoremove -y wget
 
-RUN set -x \
-    && rm -rf /var/lib/apt/lists/*
+#RUN set -x \
+#    && rm -rf /var/lib/apt/lists/*
 
 
 #Copy configuration generator script to bin
