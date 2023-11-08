@@ -1,0 +1,7 @@
+FROM debian:11.8-slim
+
+RUN set -x \
+    && apt-get update \
+    && apt-get install -y openjdk-17-jre-headless wget \
+    && apt-get autoremove -y wget \
+    && rm -rf /var/lib/apt/lists/*
