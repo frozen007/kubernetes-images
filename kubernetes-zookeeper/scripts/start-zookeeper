@@ -73,6 +73,8 @@
 #     --log_level         The log level for the zookeeeper server. Either FATAL,
 #                         ERROR, WARN, INFO, DEBUG. The default is INFO.
 
+#     --commands_whitelist  4lw.commands.whitelist
+
 
 USER=`whoami`
 HOST=`hostname -s`
@@ -93,6 +95,7 @@ MAX_CLIENT_CNXNS=60
 SNAP_RETAIN_COUNT=3
 PURGE_INTERVAL=0
 SERVERS=1
+COMMANDS_WHITELIST="*"
 
 function print_usage() {
 echo "\
@@ -198,6 +201,7 @@ function create_config() {
     echo "maxSessionTimeout=$MAX_SESSION_TIMEOUT" >> $CONFIG_FILE
     echo "autopurge.snapRetainCount=$SNAP_RETAIN_COUNT" >> $CONFIG_FILE
     echo "autopurge.purgeInteval=$PURGE_INTERVAL" >> $CONFIG_FILE
+    echo "4lw.commands.whitelist=$COMMANDS_WHITELIST" >> $CONFIG_FILE
      if [ $SERVERS -gt 1 ]; then
         print_servers >> $CONFIG_FILE
     fi
@@ -281,6 +285,9 @@ while getopts "$optspec" optchar; do
                     ;;
                 log_level=*)
                     LOG_LEVEL=${OPTARG##*=}
+                    ;;
+                commands_whitelist=*)
+                    COMMANDS_WHITELIST=${OPTARG##*=}
                     ;;
                 *)
                     echo "Unknown option --${OPTARG}" >&2
