@@ -1,0 +1,7 @@
+FROM debian:trixie-slim
+
+RUN set -x \
+    && apt-get update \
+    && apt-get install -y openjdk-21-jre-headless wget \
+    && apt-get autoremove -y wget \
+    && rm -rf /var/lib/apt/lists/*
