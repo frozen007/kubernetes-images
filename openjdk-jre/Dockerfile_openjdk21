@@ -10,6 +10,6 @@ RUN set -x \
     && tar -xzf "$JDK_DIST.tar.gz" -C /usr/lib \
     && rm -r "$ZK_DIST.tar.gz" \
     && rm -rf /usr/lib/$JDK_DIR/legal \
-    && && ln -s /usr/lib/$JDK_DIR/bin/java /usr/bin/java \
+    && ln -s /usr/lib/$JDK_DIR/bin/java /usr/bin/java \
     && apt-get autoremove -y wget \
     && rm -rf /var/lib/apt/lists/*
