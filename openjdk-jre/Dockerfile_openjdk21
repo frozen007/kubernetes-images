@@ -8,7 +8,7 @@ RUN set -x \
     && apt-get install -y wget inetutils-ping netcat \
     && wget -q "https://download.java.net/java/GA/jdk21.0.1/415e3f918a1f4062a0074a2794853d0d/12/GPL/$JDK_DIST.tar.gz" \
     && tar -xzf "$JDK_DIST.tar.gz" -C /usr/lib \
-    && rm -r "$ZK_DIST.tar.gz" \
+    && rm -r "$JDK_DIST.tar.gz" \
     && rm -rf /usr/lib/$JDK_DIR/legal \
     && ln -s /usr/lib/$JDK_DIR/bin/java /usr/bin/java \
     && apt-get autoremove -y wget \
