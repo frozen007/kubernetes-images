@@ -1,6 +1,7 @@
 FROM debian:trixie-slim
 
 RUN set -x \
+    && apt install debian-keyring debian-archive-keyring \
     && apt-get update 
 
 RUN set -x \
