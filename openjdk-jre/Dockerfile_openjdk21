@@ -2,6 +2,6 @@ FROM debian:12.2-slim
 
 RUN set -x \
     && apt-get update \
-    && apt-get install -y openjdk-21-jre-headless wget netcat \
+    && apt-get install -y openjdk-21-jre-headless wget inetutils-ping netcat \
     && apt-get autoremove -y wget \
     && rm -rf /var/lib/apt/lists/*
