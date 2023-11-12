@@ -1,7 +1,14 @@
-FROM debian:12.2-slim
+FROM debian:trixie-slim
 
 RUN set -x \
-    && apt-get update \
-    && apt-get install -y openjdk-21-jre-headless wget inetutils-ping netcat \
+    && apt-get update 
+
+RUN set -x \
+    && apt-get install -y openjdk-21-jre-headless 
+
+RUN set -x \
+    && apt-get install -y wget inetutils-ping netcat
+
+RUN set -x \
     && apt-get autoremove -y wget \
     && rm -rf /var/lib/apt/lists/*
