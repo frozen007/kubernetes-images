@@ -8,7 +8,7 @@ JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 ARG ZK_DIST=apache-zookeeper-3.9.1-bin
 RUN set -x \
     && apt-get update \
-    && apt-get install -y openjdk-8-jre-headless wget netcat-openbsd \
+    && apt-get install -y openjdk-8-jre-headless wget inetutils-ping netcat-openbsd \
 	&& wget -q "https://dlcdn.apache.org/zookeeper/zookeeper-3.9.1/apache-zookeeper-3.9.1-bin.tar.gz" \
     && tar -xzf "$ZK_DIST.tar.gz" -C /opt \
     && rm -r "$ZK_DIST.tar.gz" \
