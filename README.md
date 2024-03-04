@@ -1,15 +1,15 @@
-# about
+# About
 A collection of my own docker images which is used to be deployed in kubernetes cluster.
 
 
-# how to build
+# How to build
 For some reasons, we can't pull some basic images from docker-hub in chinese mainland.
 So we have to build Dockerfile with servers deployed outside chinese mainland.
 Some cloud providers that can pull your Dockerfile from git repo and build it with outside servers:
 - Alibaba Cloud: https://cr.console.aliyun.com
 
 
-# how to use in kubernetes
+# How to use in kubernetes
 - add docker-regsitry secret
 create a secret named ```regcred```
 ```
@@ -36,7 +36,7 @@ spec:
 ...
 ```
 
-# others
+# Others
 
 debian packages
 https://www.debian.org/distrib/packages
