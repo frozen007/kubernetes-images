@@ -1,15 +1,17 @@
-FROM docker.kubesre.xyz/debian:11.8-slim
+FROM debian:11.8-slim
+#FROM docker.kubesre.xyz/debian:11.8-slim
 
-ADD sources.list /etc/apt/sources.list
+#ADD sources.list /etc/apt/sources.list
 ADD build.sh /opt/build.sh
 
 RUN set -x \
     && apt-get update \
     && apt-get install -y openjdk-17-jre-headless wget inetutils-ping netcat \
     && apt-get install -y cmake make g++ \
-    && wget -q "https://mirror.ghproxy.com/https://github.com/LibreDWG/libredwg/releases/download/0.13.3.7257/libredwg-0.13.3.7257.tar.gz" \
-    && tar -xzf "libredwg-0.13.3.7257.tar.gz" -C /opt \
-    && rm -rf "libredwg-0.13.3.7257.tar.gz" \
+#    && wget -q "https://mirror.ghproxy.com/https://github.com/LibreDWG/libredwg/releases/download/0.13.3.7257/libredwg-0.13.3.7257.tar.gz" \
+    && wget -q "http://ftp.gnu.org/gnu/libredwg/libredwg-0.13.3.tar.gz" \
+    && tar -xzf "libredwg-0.13.3.tar.gz" -C /opt \
+    && rm -rf "libredwg-0.13.3.tar.gz" \
     && sh /opt/build.sh \
     && apt-get autoremove -y wget \
     && rm -rf /var/lib/apt/lists/*
